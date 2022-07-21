@@ -15,6 +15,7 @@ namespace FirstAttemtp.API.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
+            // Deneme
             _logger = logger;
         }
 
