@@ -4,7 +4,7 @@ namespace FirstAttempt.Core.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll();
         Task<T> GetByIdAsync(int Id);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsnc(Expression<Func<T, bool>> expression);
