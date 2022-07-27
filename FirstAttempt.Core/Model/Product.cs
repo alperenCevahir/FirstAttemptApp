@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstAttempt.Core
+namespace FirstAttempt.Core.Model
 {
-    public class Product:BaseEntitiy
+    public class Product : BaseEntitiy
     {
-        public  string Name { get; set; }
+        public string Name { get; set; }
         public int Stock { get; set; }
 
         public decimal Price { get; set; }

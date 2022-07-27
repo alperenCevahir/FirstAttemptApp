@@ -1,8 +1,11 @@
 using FirstAttempt.Core.Repositories;
+using FirstAttempt.Core.Services;
 using FirstAttempt.Core.UnitOfWorks;
 using FirstAttempt.Repository;
 using FirstAttempt.Repository.Repositories;
 using FirstAttempt.Repository.UnitOfWork;
+using FirstAttempt.Service.Mapping;
+using FirstAttempt.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -17,7 +20,12 @@ builder.Services.AddSwaggerGen();
 //Scoplar
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(<IService<>), typeof(Service<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+//AutoMapper
+//Linq ile mapping yapmak en hýzlýsýymýþ gerekirse araþtýrýrsýn
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {

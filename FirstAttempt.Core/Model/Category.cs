@@ -1,6 +1,6 @@
-﻿namespace FirstAttempt.Core
+﻿namespace FirstAttempt.Core.Model
 {
-    public class Category:BaseEntitiy
+    public class Category : BaseEntitiy
     {
         public string Name { get; set; }
 

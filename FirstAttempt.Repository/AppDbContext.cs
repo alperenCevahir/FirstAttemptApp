@@ -1,4 +1,4 @@
-﻿using FirstAttempt.Core;
+﻿using FirstAttempt.Core.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
