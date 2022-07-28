@@ -27,7 +27,7 @@ builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
-builder.Services.AddDbContext<AppDbContext>(x =>
+builder.Services.AddDbContext<AppDbContext>(x => 
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
     {

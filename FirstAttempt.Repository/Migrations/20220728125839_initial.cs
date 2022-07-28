@@ -90,11 +90,11 @@ namespace FirstAttempt.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "Name", "Price", "Stock", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1520), "Kalem 1", 100m, 20, null },
-                    { 2, 1, new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1533), "Kalem 2", 100m, 20, null },
-                    { 3, 1, new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1535), "Kalem 3", 100m, 20, null },
-                    { 4, 2, new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1536), "Kitap 1", 150m, 10, null },
-                    { 5, 2, new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1538), "Kalem 2", 150m, 10, null }
+                    { 1, 1, new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1293), "Kalem 1", 100m, 20, null },
+                    { 2, 1, new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1306), "Kalem 2", 100m, 20, null },
+                    { 3, 1, new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1307), "Kalem 3", 100m, 20, null },
+                    { 4, 2, new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1309), "Kitap 1", 150m, 10, null },
+                    { 5, 2, new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1310), "Kalem 2", 150m, 10, null }
                 });
 
             migrationBuilder.InsertData(

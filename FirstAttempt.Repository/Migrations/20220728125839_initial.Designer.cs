@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstAttempt.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220725105701_initial")]
+    [Migration("20220728125839_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace FirstAttempt.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FirstAttempt.Core.Category", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace FirstAttempt.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.Product", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,7 +107,7 @@ namespace FirstAttempt.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1520),
+                            CreatedDate = new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1293),
                             Name = "Kalem 1",
                             Price = 100m,
                             Stock = 20
@@ -116,7 +116,7 @@ namespace FirstAttempt.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1533),
+                            CreatedDate = new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1306),
                             Name = "Kalem 2",
                             Price = 100m,
                             Stock = 20
@@ -125,7 +125,7 @@ namespace FirstAttempt.Repository.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1535),
+                            CreatedDate = new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1307),
                             Name = "Kalem 3",
                             Price = 100m,
                             Stock = 20
@@ -134,7 +134,7 @@ namespace FirstAttempt.Repository.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1536),
+                            CreatedDate = new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1309),
                             Name = "Kitap 1",
                             Price = 150m,
                             Stock = 10
@@ -143,14 +143,14 @@ namespace FirstAttempt.Repository.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 7, 25, 13, 57, 1, 209, DateTimeKind.Local).AddTicks(1538),
+                            CreatedDate = new DateTime(2022, 7, 28, 15, 58, 39, 344, DateTimeKind.Local).AddTicks(1310),
                             Name = "Kalem 2",
                             Price = 150m,
                             Stock = 10
                         });
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.ProductFeature", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,9 +196,9 @@ namespace FirstAttempt.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.Product", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.Product", b =>
                 {
-                    b.HasOne("FirstAttempt.Core.Category", "Category")
+                    b.HasOne("FirstAttempt.Core.Model.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -207,23 +207,23 @@ namespace FirstAttempt.Repository.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.ProductFeature", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.ProductFeature", b =>
                 {
-                    b.HasOne("FirstAttempt.Core.Product", "Product")
+                    b.HasOne("FirstAttempt.Core.Model.Product", "Product")
                         .WithOne("ProductFeature")
-                        .HasForeignKey("FirstAttempt.Core.ProductFeature", "ProductId")
+                        .HasForeignKey("FirstAttempt.Core.Model.ProductFeature", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.Category", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("FirstAttempt.Core.Product", b =>
+            modelBuilder.Entity("FirstAttempt.Core.Model.Product", b =>
                 {
                     b.Navigation("ProductFeature");
                 });
