@@ -9,18 +9,30 @@ namespace FirstAttemtp.API.Controllers
 {
     //mümkün olduğunca temiz kullanıcaz business kodları burada bulundurmayacağız o yüzden service katmanımız var
     //mapleme olayını burda gerçekleştiricez
-    [Route("api/[controller]")]
-    [ApiController]
+
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
+        private readonly IProductService _service;
 
-        public ProductsController(IMapper mapper, IService<Product> service)
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
-            _service = service;
+            _service = productService;
         }
+
+
+        //GET /api/products/GetProductsWithCategory
+        //action methodun ismini alıyor otomatik olarak
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsWithCategory()
+        {
+            return CreateActionResult(await _service.GetProductsWithCategory());
+
+        }
+
+
+
 
 
 
@@ -64,7 +76,7 @@ namespace FirstAttemtp.API.Controllers
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
             await _service.UpdateAsync(_mapper.Map<Product>(productDto));
-           return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
 
