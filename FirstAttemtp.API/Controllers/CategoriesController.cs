@@ -1,10 +1,11 @@
 ﻿using FirstAttempt.Core.Services;
+using FirstAttemtp.API.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstAttemtp.API.Controllers
+
 {
-   
     public class CategoriesController : CustomBaseController
     {
         private readonly ICategoryService _categoryService;
