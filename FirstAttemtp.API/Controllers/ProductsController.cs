@@ -32,10 +32,6 @@ namespace FirstAttemtp.API.Controllers
         }
 
 
-
-
-
-
         //GET /api/products
         [HttpGet]
         public async Task<IActionResult> All()
@@ -48,12 +44,15 @@ namespace FirstAttemtp.API.Controllers
         }
 
 
-
+        //bir filter constructorda parametre alıyorsa service filter üzerinden kullanmamız lazım
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         //GET /api/products/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var product = await _service.GetByIdAsync(id);
+            //burda if ile product null olduğundaki durumu yazabiliriz ama kötü bir örnek lur
+
             var productsDtos = _mapper.Map<ProductDto>(product);
 
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productsDtos));

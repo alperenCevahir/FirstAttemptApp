@@ -33,6 +33,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
 
 
 //Scoplar
@@ -67,6 +69,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
+//builder.Host.UseServiceProviderFactory
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -79,7 +83,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //Middleware aktif ediyorum
-app.UserCustomException();
+app.UseCustomException();
 
 app.UseAuthorization();
 

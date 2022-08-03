@@ -1,6 +1,6 @@
 ﻿namespace FirstAttempt.Core.Model
 {
-    public abstract class BaseEntitiy
+    public abstract class BaseEntity
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }

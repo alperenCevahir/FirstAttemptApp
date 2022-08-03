@@ -8,7 +8,7 @@ namespace FirstAttemtp.API.Middlewares
     //Extencion classı yazabilmek için class static olmak zorunda
     public static class UseCustomExceptionHandler
     {
-        public static void UserCustomException(this IApplicationBuilder app)
+        public static void UseCustomException(this IApplicationBuilder app)
         {
             app.UseExceptionHandler(config =>
             {
@@ -22,6 +22,7 @@ namespace FirstAttemtp.API.Middlewares
                     var statusCode = exceptionFuture.Error switch
                     {
                         ClientSideException => 400,
+                        NotFoundException => 500,
                         _ => 500
                         //Default 500
                     };

@@ -1,6 +1,7 @@
 ﻿using FirstAttempt.Core.Repositories;
 using FirstAttempt.Core.Services;
 using FirstAttempt.Core.UnitOfWorks;
+using FirstAttempt.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -12,13 +13,13 @@ namespace FirstAttempt.Service.Services
         private readonly IGenericRepository<T> _repository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public Service(IGenericRepository<T> repository,IUnitOfWork unitOfWork)
+        public Service(IGenericRepository<T> repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
 
-        
+
 
         public async Task<T> AddAsync(T entity)
         {
@@ -41,12 +42,20 @@ namespace FirstAttempt.Service.Services
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _repository.GetAll().ToListAsync(); 
+            return await _repository.GetAll().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            return await _repository.GetByIdAsync(Id);
+            var hasProduct = await _repository.GetByIdAsync(Id);
+
+            //BURASI ÖNEMLİ
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({Id}) not found");
+            }
+
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)

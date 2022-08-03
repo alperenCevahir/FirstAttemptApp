@@ -4,11 +4,6 @@ using FirstAttempt.Core.Model;
 using FirstAttempt.Core.Repositories;
 using FirstAttempt.Core.Services;
 using FirstAttempt.Core.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Service.Services
 {
