@@ -1,14 +1,11 @@
-using FirstAttempt.Core.Repositories;
-using FirstAttempt.Core.Services;
-using FirstAttempt.Core.UnitOfWorks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FirstAttempt.Repository;
-using FirstAttempt.Repository.Repositories;
-using FirstAttempt.Repository.UnitOfWork;
 using FirstAttempt.Service.Mapping;
-using FirstAttempt.Service.Services;
 using FirstAttempt.Service.Validation;
 using FirstAttemtp.API.Filters;
 using FirstAttemtp.API.Middlewares;
+using FirstAttemtp.API.Modules;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -33,25 +30,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Ýstersen filterlar için de ayrý bir module ekleyebilirsin
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
-
-
-
-//Scoplar
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService,ProductService >();
-
-
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
-
-
 
 
 //AutoMapper
@@ -59,7 +39,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
-builder.Services.AddDbContext<AppDbContext>(x => 
+builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
     {
@@ -69,7 +49,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
-//builder.Host.UseServiceProviderFactory
+//AutoFac kýsmý buasý
+builder.Host.UseServiceProviderFactory
+    (new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
 var app = builder.Build();
 
