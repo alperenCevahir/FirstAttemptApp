@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FirstAttempt.Service\FirstAttempt.Service.csproj" />
+    <ProjectReference Include="..\FirstAttempt.Cashing\FirstAttempt.Caching.csproj" />
   </ItemGroup>
 
 </Project>

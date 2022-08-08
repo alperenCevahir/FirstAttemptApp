@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using FirstAttempt.Caching;
 using FirstAttempt.Core.Repositories;
 using FirstAttempt.Core.Services;
 using FirstAttempt.Core.UnitOfWorks;
@@ -13,7 +12,7 @@ using System.Reflection;
 using Module = Autofac.Module;
 
 
-namespace FirstAttemtp.API.Modules
+namespace FirstAttemtp.Web.Modules
 {
     public class RepoServiceModule : Module
     {
@@ -38,7 +37,6 @@ namespace FirstAttemtp.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x =>
             x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
             //InstancePerLifetimeScope => Scope
             //InstancePerDependency => transient

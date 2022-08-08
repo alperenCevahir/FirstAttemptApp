@@ -26,7 +26,7 @@ namespace FirstAttemtp.API.Filters
             }
 
             var id = (int)idValue;
-            var anyEntity = await _service.AnyAsnc(x => x.Id == id);
+            var anyEntity = await _service.AnyAsync(x => x.Id == id);
 
 
             if (anyEntity)

@@ -11,7 +11,7 @@ namespace FirstAttempt.Core.Services
     public interface IProductService:IService<Product>
     {
 
-        Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory();
+        Task<List<ProductWithCategoryDto>> GetProductsWithCategory();
 
     }
 }

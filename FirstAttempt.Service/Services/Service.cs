@@ -35,7 +35,7 @@ namespace FirstAttempt.Service.Services
             return entities;
         }
 
-        public async Task<bool> AnyAsnc(Expression<Func<T, bool>> expression)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _repository.AnyAsnc(expression);
         }

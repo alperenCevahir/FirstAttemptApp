@@ -12,7 +12,7 @@ namespace FirstAttempt.Core.Services
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int Id);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
-        Task<bool> AnyAsnc(Expression<Func<T, bool>> expression);
+        Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<T> AddAsync(T entity);
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);
