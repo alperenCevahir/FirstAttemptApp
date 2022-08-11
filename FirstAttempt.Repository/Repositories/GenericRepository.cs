@@ -1,11 +1,6 @@
 ﻿using FirstAttempt.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Repository.Repositories
 {
@@ -22,17 +17,17 @@ namespace FirstAttempt.Repository.Repositories
 
         public async Task AddAsync(T entity)
         {
-            await  _dbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            await  _dbSet.AddRangeAsync(entities);
+            await _dbSet.AddRangeAsync(entities);
         }
 
         public async Task<bool> AnyAsnc(Expression<Func<T, bool>> expression)
         {
-            return await    _dbSet.AnyAsync(expression);   
+            return await _dbSet.AnyAsync(expression);
         }
 
         public IQueryable<T> GetAll()

@@ -28,7 +28,7 @@ namespace FirstAttempt.Caching
             _repository = repository;
             _unitOfWork = unitOfWork;
 
-            if (!_memoryCache.TryGetValue(CacheProductKey, out _)) 
+            if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
                 //Result ile asyncyi senkrona dönüştürdük
                 _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
@@ -71,23 +71,23 @@ namespace FirstAttempt.Caching
         public Task<Product> GetByIdAsync(int Id)
         {
             var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == Id);
-            if(product == null)
+            if (product == null)
             {
-                throw  new NotFoundException($"{typeof(Product).Name}({Id}) not found");
+                throw new NotFoundException($"{typeof(Product).Name}({Id}) not found");
             }
 
             return Task.FromResult(product);
         }
 
         //Get Products With Category
-        public  Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+        public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
             var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
             return Task.FromResult(productsWithCategoryDto);
-        } 
-        
+        }
+
         //Remove Async
         public async Task RemoveAsync(Product entity)
         {
@@ -101,7 +101,7 @@ namespace FirstAttempt.Caching
         {
             _repository.RemoveRange(entities);
             await _unitOfWork.CommitAsync();
-            await CacheAllProductsAsync(); 
+            await CacheAllProductsAsync();
         }
 
         //Update Async
@@ -121,7 +121,7 @@ namespace FirstAttempt.Caching
         //Cache All Products Async
         public async Task CacheAllProductsAsync()
         {
-            _memoryCache.Set(CacheProductKey,await _repository.GetAll().ToListAsync());
+            _memoryCache.Set(CacheProductKey, await _repository.GetAll().ToListAsync());
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FirstAttempt.Core.DTOs
+﻿namespace FirstAttempt.Core.DTOs
 {
-    public class CategoryWithProductsDto:CategoryDto
+    public class CategoryWithProductsDto : CategoryDto
     {
         public List<ProductDto> Products { get; set; }
     }

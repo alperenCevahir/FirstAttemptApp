@@ -12,7 +12,7 @@ namespace FirstAttempt.Service.Services
 
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
-        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductRepository productRepository) 
+        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductRepository productRepository)
             : base(repository, unitOfWork)
         {
             _mapper = mapper;

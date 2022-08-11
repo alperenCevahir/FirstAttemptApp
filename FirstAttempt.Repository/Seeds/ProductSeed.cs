@@ -1,11 +1,6 @@
 ﻿using FirstAttempt.Core.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Repository.Seeds
 {
@@ -15,13 +10,13 @@ namespace FirstAttempt.Repository.Seeds
         {
             builder.HasData(new Product
             {
-                Id= 1,
-                CategoryId= 1,
-                Name= "Kalem 1",
+                Id = 1,
+                CategoryId = 1,
+                Name = "Kalem 1",
                 Price = 100,
                 Stock = 20,
                 CreatedDate = DateTime.Now,
-            },  new Product
+            }, new Product
             {
                 Id = 2,
                 CategoryId = 1,
@@ -29,7 +24,7 @@ namespace FirstAttempt.Repository.Seeds
                 Price = 100,
                 Stock = 20,
                 CreatedDate = DateTime.Now,
-            },  new Product
+            }, new Product
             {
                 Id = 3,
                 CategoryId = 1,
@@ -45,7 +40,7 @@ namespace FirstAttempt.Repository.Seeds
                 Price = 150,
                 Stock = 10,
                 CreatedDate = DateTime.Now,
-            },new Product
+            }, new Product
             {
                 Id = 5,
                 CategoryId = 2,

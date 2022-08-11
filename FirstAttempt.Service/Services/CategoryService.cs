@@ -4,11 +4,6 @@ using FirstAttempt.Core.Model;
 using FirstAttempt.Core.Repositories;
 using FirstAttempt.Core.Services;
 using FirstAttempt.Core.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Service.Services
 {
@@ -27,7 +22,7 @@ namespace FirstAttempt.Service.Services
         {
             var category = await _categoryRepository.GetSingleCategoryByIdWithProductsAsync(categoryId);
             var categoryDto = _mapper.Map<CategoryWithProductsDto>(category);
-            return  CustomResponseDto<CategoryWithProductsDto>.Success(200, categoryDto);
+            return CustomResponseDto<CategoryWithProductsDto>.Success(200, categoryDto);
         }
     }
 }

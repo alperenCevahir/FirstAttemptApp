@@ -1,11 +1,6 @@
 ﻿using FirstAttempt.Core.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Repository.Configuration
 {
@@ -14,7 +9,9 @@ namespace FirstAttempt.Repository.Configuration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            //db ile alakalı burası
             builder.HasKey(x => x.Id);
+            //bir bir artmasını sağlayan kod bu
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
             builder.Property(x => x.Stock).IsRequired();

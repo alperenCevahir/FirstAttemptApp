@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FirstAttempt.Core.DTOs
+﻿namespace FirstAttempt.Core.DTOs
 {
-     public abstract class BaseDto
+    public abstract class BaseDto
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }

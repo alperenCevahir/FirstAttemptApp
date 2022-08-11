@@ -1,11 +1,6 @@
 ﻿using FirstAttempt.Core.Model;
 using FirstAttempt.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstAttempt.Repository.Repositories
 {
@@ -22,7 +17,7 @@ namespace FirstAttempt.Repository.Repositories
 
             //Eager loading
             //ilk productları çektiğimiz anda kategoriyi de çekersek eager loading oluyor
-            return await _context.Products.Include(x=> x.Category).ToListAsync();
+            return await _context.Products.Include(x => x.Category).ToListAsync();
         }
     }
 }
