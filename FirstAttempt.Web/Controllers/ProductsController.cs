@@ -24,7 +24,7 @@ namespace FirstAttempt.Web.Controllers
         public async Task<IActionResult> Index()
         {
             //Katmanlı mimari sadece web uygulaması dönecekse custom response dönmeye gerek yok
-            return View(await _services.GetProductsWithCategory());
+            return View((await _services.GetProductsWithCategory()).Data);
         }
         //Save
         public async Task<IActionResult> Save()
