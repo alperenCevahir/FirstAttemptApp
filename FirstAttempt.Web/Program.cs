@@ -2,14 +2,17 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FirstAttempt.Repository;
 using FirstAttempt.Service.Mapping;
+using FirstAttempt.Service.Validation;
+using FirstAttempt.Web;
 using FirstAttemtp.Web.Modules;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 //AutoMapper
 //Linq ile mapping yapmak en hýzlýsýymýþ gerekirse araþtýrýrsýn
 builder.Services.AddAutoMapper(typeof(MapProfile));
@@ -24,6 +27,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+//NotFound Filter
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 //Autofac
 builder.Host.UseServiceProviderFactory
@@ -32,10 +37,12 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerB
 
 var app = builder.Build();
 
+//Aþaðýdaki ifin içinde olmasý daha doðru dedi
+app.UseExceptionHandler("/Home/Error");
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
