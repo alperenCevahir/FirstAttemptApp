@@ -60,6 +60,7 @@ namespace FirstAttempt.Repository
                             }
                         case EntityState.Modified:
                             {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
                                 entityReference.UpdatedDate = DateTime.Now;
                                 break;
                             }

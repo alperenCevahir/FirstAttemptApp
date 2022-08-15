@@ -4,6 +4,7 @@ using FirstAttempt.Repository;
 using FirstAttempt.Service.Mapping;
 using FirstAttempt.Service.Validation;
 using FirstAttempt.Web;
+using FirstAttempt.Web.Services;
 using FirstAttemtp.Web.Modules;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,19 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+
+//Appsettingsteki base urli okuyoruz, api ile baðlantýyla alakalý
+builder.Services.AddHttpClient<ProductApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<CategoryApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+
+
 //NotFound Filter
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
